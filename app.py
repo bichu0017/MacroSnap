@@ -100,9 +100,12 @@ def ask_gemini(parts):
 			if not is_overloaded:
 				return f"Sorry, something went wrong: {error}"
 			if attempt < 2:
-				time.sleep(attempt + 1)
+				time.sleep(2 ** (attempt + 1))
 
-	return "Gemini is temporarily busy. Please wait a moment, then send your meal again."
+	return (
+		"Gemini is still unavailable after several attempts. Please try again in a minute. "
+		"If this keeps happening, check your Gemini API status and quota."
+	)
 
 
 def clean_whatsapp_text(text):
